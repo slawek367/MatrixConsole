@@ -10,6 +10,7 @@ namespace matrix
     {
         private static readonly object SyncObject = new object();
 
+        //Method which displaying text on x column
         public static void DisplayColumn(Random rand, int speed, int consoleXLen, int columnXPos, int minTextLen, int maxTextLen)
         {
             while (true)
@@ -43,15 +44,11 @@ namespace matrix
                             if (firstLoop) {
                                 System.Threading.Thread.Sleep(speed);
                             }
+                            column.changeRandomLetter(rand);
                         }
                     }
 
-                    column.changeRandomLetter(rand);
-                    column.changeRandomLetter(rand);
-                    column.changeRandomLetter(rand);
-                    column.changeRandomLetter(rand);
-                    column.changeRandomLetter(rand);
-                    column.changeRandomLetter(rand);
+                    
 
                     if (!firstLoop)
                     {
@@ -61,12 +58,12 @@ namespace matrix
                     {
                         firstLoop = false;
                     }
-                    //clearConsoleColumn(consoleXLen, columnXPos);
                 }
                 clearField(columnXPos, column.charBuffer[0].yPosition - 1);
             }
         }
 
+        //Clearing methods
         public static void clearConsoleColumn(int consoleXLen, int columnXPos)
         {
             for (int i = 0; i < consoleXLen; i++)

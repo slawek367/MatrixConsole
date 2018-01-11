@@ -14,25 +14,43 @@ namespace matrix
 
         static void Main()
         {
+            //If program not working good all configuration like window size etc. you could change in Window class
             Random rand = new Random();
             Window.ConfigureWindow();
+            Startup();
 
-            
-            for (int i = 0; i < 49; i++)
+            for (int i = 0; i < Window.ySize-1; i++)
             {
+                //Creating threads which controllong columns
                 lock (SyncObject) { 
-                    Thread thread = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(0,3), Window.xSize, i, Window.minTextLen, Window.maxTextLen));
+                    Thread thread = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(Window.maxSpeed, Window.minSpeed), Window.xSize, i, Window.minTextLen, Window.maxTextLen));
                     thread.Start();
                 }
             }
-            
-            /*
-            Thread thread1 = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(200, 500), Window.xSize, 0, Window.minTextLen, Window.maxTextLen));
-            thread1.Start();
-            Thread thread2 = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(200, 500), Window.xSize, 1, Window.minTextLen, Window.maxTextLen));
-            thread2.Start();
-            */
+
             Console.ReadKey();
+        }
+
+        static void Startup()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("-Morpheus: This is a Matrix program!");
+            Thread.Sleep(1500);
+            Console.WriteLine("-Morpheus: Which pill do you choose?");
+            Thread.Sleep(1500);
+            Console.Write("-Morpheus: ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("Red?\t");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("Or blue?\n");
+            Thread.Sleep(1000);
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("-Neo: Hmm... I will choose red!");
+            Thread.Sleep(1200);
+            Console.WriteLine("-Morpheus: So... Let's go!");
+            Thread.Sleep(1500);
+            Console.Clear();
         }
     }
 }

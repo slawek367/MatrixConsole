@@ -8,6 +8,7 @@ namespace matrix
 {
     class Letter
     {
+        //Letter class
         public bool colorLighter {get; set;}
         public char letter { get; set; }
         static Random rand = new Random();

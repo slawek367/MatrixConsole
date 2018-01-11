@@ -10,6 +10,7 @@ namespace matrix
 {
     class Column
     {
+        //In this class you will find all text which is displayed in column.
         public int bufferSize { get; set; }
         public Letter[] charBuffer {get;set;}
         public int xPos { get; set; }
@@ -47,13 +48,15 @@ namespace matrix
 
         public void changeRandomLetter(Random rand)
         {
-            for (int i = 0; i < 3; i++)
+            if(rand.Next(0,4) > 1)
             {
-                int index = rand.Next(0, bufferSize - 1);
-                int currentPos = charBuffer[index].yPosition;
-                bool lighter = charBuffer[index].colorLighter;
-                charBuffer[index] = new Letter(currentPos, lighter);
+                return;
             }
+
+            int index = rand.Next(0, bufferSize - 1);
+            int currentPos = charBuffer[index].yPosition;
+            bool lighter = charBuffer[index].colorLighter;
+            charBuffer[index] = new Letter(currentPos, lighter);
         }
     }
 }
