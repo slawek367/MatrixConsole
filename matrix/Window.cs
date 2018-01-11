@@ -8,11 +8,11 @@ namespace matrix
 {
     static class Window
     {
-        public static int ySize = 150;
-        public static int xSize = 40;
+        public static int ySize = 50;
+        public static int xSize = 30;
 
-        public static int minTextLen = 10;
-        public static int maxTextLen = 30;
+        public static int minTextLen = 5;
+        public static int maxTextLen = 20;
 
 
         public static void ConfigureWindow()

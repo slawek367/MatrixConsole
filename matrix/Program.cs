@@ -10,41 +10,28 @@ namespace matrix
 {
     class Program
     {
+        private static readonly object SyncObject = new object();
+
         static void Main()
         {
             Random rand = new Random();
             Window.ConfigureWindow();
 
-            /*
-            Console.SetCursorPosition(5, 5);
-            Console.Write('a');
-
-            Console.SetCursorPosition(2, 7);
-            Console.Write('b');
-            */
-            int startPos = 0;
-            int endPos = 30;
-
-            //Column[] columns = new Column[10];
-            //columns[0] = new Column(rand, 0);
-            //columns[0].ShowColumn();
-
-            for (int i = 0; i < 149; i++)
+            
+            for (int i = 0; i < 49; i++)
             {
-                Thread thread = new Thread(() => Display.DisplayColumn(new Random(), 100, Window.xSize, i, Window.minTextLen, Window.maxTextLen));
-                thread.Start();
+                lock (SyncObject) { 
+                    Thread thread = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(0,3), Window.xSize, i, Window.minTextLen, Window.maxTextLen));
+                    thread.Start();
+                }
             }
-            //Thread thread2 = new Thread(() => Display.DisplayColumn(rand, 100, Window.xSize, 3, Window.minTextLen, Window.maxTextLen));
-            //thread2.Start();
-
-            //Display.DisplayColumn(rand, 1000, Window.xSize, 0, Window.minTextLen, Window.maxTextLen);
-
+            
             /*
-            while (true)
-            {
-
-            }*/
-
+            Thread thread1 = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(200, 500), Window.xSize, 0, Window.minTextLen, Window.maxTextLen));
+            thread1.Start();
+            Thread thread2 = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(200, 500), Window.xSize, 1, Window.minTextLen, Window.maxTextLen));
+            thread2.Start();
+            */
             Console.ReadKey();
         }
     }
