@@ -22,8 +22,8 @@ namespace matrix
             for (int i = 0; i < Window.ySize-1; i++)
             {
                 //Creating threads which controllong columns
-                lock (SyncObject) { 
-                    Thread thread = new Thread(() => Display.DisplayColumn(new Random(), rand.Next(Window.maxSpeed, Window.minSpeed), Window.xSize, i, Window.minTextLen, Window.maxTextLen));
+                lock (SyncObject) {
+                    Task thread = new Task(() => Display.DisplayColumn(new Random(), rand.Next(Window.maxSpeed, Window.minSpeed), Window.xSize, i, Window.minTextLen, Window.maxTextLen), TaskCreationOptions.LongRunning);
                     thread.Start();
                 }
             }

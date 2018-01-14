@@ -10,15 +10,15 @@ namespace matrix
     {
         //Window size
         public static int ySize = 100;
-        public static int xSize = 40;
+        public static int xSize = 36;
 
         //Min and max text size in each column
-        public static int minTextLen = 14;
-        public static int maxTextLen = 40;
+        public static int minTextLen = 10;
+        public static int maxTextLen = 30;
 
         //Min and max text scrolling speed (delay in MS between each scroll)
-        public static int minSpeed = 250;
-        public static int maxSpeed = 30;
+        public static int minSpeed = 500;
+        public static int maxSpeed = 70;
 
 
         public static void ConfigureWindow()
